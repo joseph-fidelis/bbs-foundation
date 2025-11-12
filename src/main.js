@@ -112,4 +112,34 @@ dots.forEach((dot, index) => {
 // Auto-advance carousel every 5 seconds
 setInterval(nextSlide, 5000);
 
+// Donation Dialog functionality
+const donationDialog = document.getElementById('donationDialog');
+const donateButtons = document.querySelectorAll('.btn-primary');
+const closeButton = document.querySelector('.dialog-close');
+const cancelButton = document.getElementById('cancelDonate');
+
+// Open dialog when donate button is clicked
+donateButtons.forEach((btn) => {
+  if (btn.textContent.includes('DONATE')) {
+    btn.addEventListener('click', () => {
+      donationDialog.showModal();
+    });
+  }
+});
+
+// Close dialog
+function closeDialog() {
+  donationDialog.close();
+}
+
+closeButton.addEventListener('click', closeDialog);
+cancelButton.addEventListener('click', closeDialog);
+
+// Close dialog when clicking on backdrop
+donationDialog.addEventListener('click', (e) => {
+  if (e.target === donationDialog) {
+    closeDialog();
+  }
+});
+
 console.log('BBS Foundation website loaded successfully!');
